@@ -1,0 +1,57 @@
+.container {
+    display: block;
+}
+
+.left-nav {
+    position: absolute;
+}
+
+.ant-row {
+    background-color: #242424;
+    height: 75px;
+}
+
+.ant-col {
+    line-height: 75px;
+}
+
+li {
+    display: inline-block;
+    float: left;
+    line-height: 75px;
+    font-size: 15px;
+    text-align: center;
+}
+
+li:hover {
+    background: #000000;
+}
+
+li a {
+    padding: 0 20px;
+    display: block;
+    color: #cccccc;
+}
+
+a:hover {
+    color: #cccccc;
+}
+
+.login {
+    color: #787878;
+    font-size: 14px;
+    padding: 0 0 0 35px;
+}
+
+.search {
+    border-radius: 15px;
+}
+
+input::-webkit-input-placeholder {
+    /* placeholder字体大小 */
+    font-size: 12px;
+}
+
+.active {
+    background-color: #000000;
+}
