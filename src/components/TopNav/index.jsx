@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 import { Row, Col, Input, Button } from 'antd';
-import { HashRouter as Router, Switch, Route, NavLink, HashRouter} from "react-router-dom";
+import { HashRouter as Router, Switch, Route, NavLink, Redirect} from "react-router-dom";
 import Home from "../../page/Home";
 import Discover from "../../page/Discover";
 import MyMusic from "../../page/MyMusic";
@@ -54,8 +54,10 @@ const TopNav = () =>{
             </Row>
 
             <Switch>
-                <Route exact path="/home" component={ Home }/>
-                <Route exact path="/discover" component={ Discover }/>
+                {/* 重定向主页，直接跳转到home页面 */}
+                <Redirect exact path="/" to="home" />
+                <Route  path="/home" component={ Home }/>
+                {/*<Route exact path="/discover" component={ Discover }/>*/}
                 <Route exact path="/mymusic" component={ MyMusic }/>
                 <Route exact path="/friend" component={ Friend }/>
                 <Route exact path="/shop" component={ Shop }/>
