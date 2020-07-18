@@ -33,3 +33,34 @@ left-out-line:hover {
     height: 50px;
     margin: -130px 20px 0 1110px;
 }
+
+.left-music,.right-music {
+    background-color: #ffffff;
+}
+
+.left-music,.right-music {
+    border:1px solid #d3d3d3;
+}
+
+/* 设置回到顶部样式 */
+.ant-back-top {
+    right: 175px;
+}
+
+.footer {
+    padding: 0 0 40px 0;
+    border:1px solid #d3d3d3;
+}
+
+.copy-right {
+    float: left;
+}
+
+.copy-right p {
+    height: 25px;
+}
+
+.admire {
+    margin: 0 0 0 53%;
+}
+

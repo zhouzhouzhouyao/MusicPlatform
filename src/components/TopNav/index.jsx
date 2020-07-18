@@ -1,22 +1,16 @@
 import React from 'react'
 import './style.css'
-import { Row, Col, Input, Button } from 'antd';
-import { HashRouter as Router, Switch, Route, NavLink, Redirect} from "react-router-dom";
-import Home from "../../page/Home";
-import Discover from "../../page/Discover";
-import MyMusic from "../../page/MyMusic";
-import Friend from "../../page/Friend";
-import Shop from "../../page/Shop";
-import Musician from "../../page/Musician";
-import Download from "../../page/Download";
-import NotFound from "../../page/NotFound";
+import { Row, Col, Input } from 'antd';
+import { BrowserRouter as Router, Switch, Route, NavLink, Redirect} from "react-router-dom";
+import { renderRoutes } from 'react-router-config'
+import routes from "../../route/routes";
 
 const { Search } = Input;
 
 const TopNav = () =>{
     return(
         <Router>
-            <Row align="middle">
+            <Row align="middle" className="top-nav">
                 <Col span={16} offset={4} className="left-nav">
                     <ul>
                         <li>
@@ -52,18 +46,10 @@ const TopNav = () =>{
                     </span>
                 </Col>
             </Row>
-
+            {/* 加载路由组件 */}
             <Switch>
-                {/* 重定向主页，直接跳转到home页面 */}
                 <Redirect exact path="/" to="home" />
-                <Route  path="/home" component={ Home }/>
-                {/*<Route exact path="/discover" component={ Discover }/>*/}
-                <Route exact path="/mymusic" component={ MyMusic }/>
-                <Route exact path="/friend" component={ Friend }/>
-                <Route exact path="/shop" component={ Shop }/>
-                <Route exact path="/musician" component={ Musician }/>
-                <Route exact path="/download" component={ Download }/>
-                <Route component={ NotFound }/>
+                { renderRoutes(routes) }
             </Switch>
         </Router>
     )
