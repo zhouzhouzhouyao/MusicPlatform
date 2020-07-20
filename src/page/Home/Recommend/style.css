@@ -1,0 +1,55 @@
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 220px;
+    line-height: 220px;
+    background: #364d79;
+    overflow: hidden;
+}
+
+.slick-slider {
+    width: 720px;
+    margin: auto;
+}
+
+.ant-carousel .slick-slide h3 {
+    color: #fff;
+}
+
+.left-out-line {
+    position: absolute;
+    /*width: 20px;*/
+    /*height: 50px;*/
+    margin: 75px 20px 0 260px;
+    vertical-align: center;
+}
+
+left-out-line:hover {
+    background-color: #3333;
+}
+
+.right-out-line {
+    position: absolute;
+    width: 20px;
+    height: 50px;
+    margin: -130px 20px 0 1110px;
+}
+
+.left-music,.right-music {
+    background-color: #ffffff;
+}
+
+.left-music,.right-music {
+    border:1px solid #d3d3d3;
+}
+
+/* 设置回到顶部样式 */
+.ant-back-top {
+    right: 175px;
+}
+
+img {
+    width: 100%;
+}
+
+
+

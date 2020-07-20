@@ -1,95 +1,70 @@
 import React from "react";
-import { Carousel, Row, Col, BackTop } from 'antd';
-import { LeftOutlined, RightOutlined, ChromeOutlined } from '@ant-design/icons';
+import {Row, Col, Radio} from 'antd';
 import './style.css'
+import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from "react-router-dom";
+import { renderRoutes } from 'react-router-config'
+import SongList from "./SongList";
+import Recommend from "./Recommend";
+import NewSong from "./NewSong";
+import Songer from "./Songer";
+import MusicRadio from "./MusicRadio"
+import RanList from "./RankList";
+
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.next = this.next.bind(this);
-        this.prev = this.prev.bind(this);
+        // this.state = {
+        //     route: props.route,
+        // }
     }
-    next() {
-        this.slider.slick.slickNext();
-    }
-    prev() {
-        this.slider.slick.slickPrev();
-    }
+    // fun() {
+    //     console.log(this.state.route);
+    //     console.log(this.state.route.children);
+    // }
 
     render() {
-        const lunboSetting = {
-            dots: true,
-            autoplay:true,
-        }
         return(
-            <div>
-                <LeftOutlined className="left-out-line"  onClick={ this.prev }/>
-                <Carousel {...lunboSetting} ref={el => (this.slider = el)}>
-                    {/* 此处存放图片 */}
-                    <div>
-                        <h3>1</h3>
-                    </div>
-                    <div>
-                        <h3>2</h3>
-                    </div>
-                    <div>
-                        <h3>3</h3>
-                    </div>
-                    <div>
-                        <h3>4</h3>
-                    </div>
-                </Carousel>
-                <RightOutlined className="right-out-line" onClick={ this.next }/>
-
-                <Row className="main-music">
-                    <Col span={11} offset={4} className="left-music">
-                        col-8
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    </Col>
-                    <Col span={5} className="right-music">
-                        col-8
-                    </Col>
-                    <Col span={1} className="back-to-top">
-                        {/* 回到顶部 */}
-                        <BackTop />
+            <Router>
+                {/*主页顶部路由*/}
+                <Row align="middle" className="home-nav">
+                    <Col span={16} offset={6} className="home-child-nav">
+                        <ul>
+                            <li>
+                                <NavLink activeClassName="child-selected" to="/home/recommend">推荐</NavLink>
+                            </li>
+                            <li>
+                                <NavLink activeClassName="child-selected" to="/home/ranklist">排行榜</NavLink>
+                            </li>
+                            <li>
+                                <NavLink activeClassName="child-selected" to="/home/songlist">歌单</NavLink>
+                            </li>
+                            <li>
+                                <NavLink activeClassName="child-selected" to="/home/musicradio">主播电台</NavLink>
+                            </li>
+                            <li>
+                                <NavLink activeClassName="child-selected" to="/home/songer">歌手</NavLink>
+                            </li>
+                            <li>
+                                <NavLink activeClassName="child-selected" to="/home/newsong">新碟上架</NavLink>
+                            </li>
+                        </ul>
                     </Col>
                 </Row>
 
-                <Row className="footer">
-                    <Col span={15} offset={5}>
-                        <div className="copy-right">
-                            <p className="service-link">
-                                <a href="#">服务条款</a>
-                                <span>  |  </span>
-                                <a href="#">隐私政策</a>
-                                <span>  |  </span>
-                                <a href="#">儿童隐私政策</a>
-                                <span>  |  </span>
-                                <a href="#">版权投诉指引</a>
-                                <span>  |  </span>
-                                <a href="#">意见反馈</a>
-                            </p>
-                            <p>云音乐平台版权所有©2020-2020</p>
-                            <p>违法和不良信息举报电话：21345</p>
-                            <p>测试性实习网站</p>
-                        </div>
-                        <div className="admire">
-                            <span>
-                                <ChromeOutlined />
-                                <em>用户中心</em>
-                            </span>
-                            <span>
-                                <ChromeOutlined />
-                                <em>赞赏</em>
-                            </span>
-                            <span>
-                                <ChromeOutlined />
-                                <em>独立音乐人</em>
-                            </span>
-                        </div>
-                    </Col>
-                </Row>
-            </div>
+                <Switch>
+                    <Redirect exact path="/home" to="home/recommend" />
+                    <Route exact path="/home/recommend" component={ Recommend }/>
+                    {/* 二级路由方式暂时不用，等后面解决这个bug */}
+                    {/*{ renderRoutes(this.state.route.children) }*/}
+                    <Route exact path="/home/songlist" component={ SongList }/>
+                    <Route exact path="/home/newsong" component={ NewSong }/>
+                    <Route exact path="/home/songer" component={ Songer }/>
+                    <Route exact path="/home/songlist" component={ SongList }/>
+                    <Route exact path="/home/musicradio" component={ MusicRadio }/>
+                    <Route exact path="/home/ranklist" component={ RanList }/>
+                </Switch>
+            </Router>
         )
     }
 }

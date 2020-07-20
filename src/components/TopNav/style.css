@@ -15,7 +15,7 @@
     line-height: 75px;
 }
 
-li {
+.left-nav li {
     display: inline-block;
     float: left;
     line-height: 75px;
@@ -23,17 +23,17 @@ li {
     text-align: center;
 }
 
-li:hover {
+.left-nav li:hover {
     background: #000000;
 }
 
-li a {
+.left-nav li a {
     padding: 0 20px;
     display: block;
     color: #cccccc;
 }
 
-a:hover {
+.left-nav a:hover {
     color: #cccccc;
 }
 
@@ -52,6 +52,6 @@ input::-webkit-input-placeholder {
     font-size: 12px;
 }
 
-.active {
+.selected {
     background-color: #000000;
 }
