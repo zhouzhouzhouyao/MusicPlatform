@@ -1,9 +1,6 @@
 package com.service.impl;
 
-import com.domain.FollowUser;
-import com.domain.News;
-import com.domain.SongList;
-import com.domain.User;
+import com.domain.*;
 import com.service.FollowAction;
 import com.service.IUserService;
 import com.service.SongAction;
@@ -56,6 +53,7 @@ public class UserServiceImplTest {
             User user = userService.findUserByUid(100001);
             System.out.println(user);
             System.out.println(user.getFollowing());
+            System.out.println(user.getFollowers());
             System.out.println(user.getSongList());
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
@@ -66,6 +64,7 @@ public class UserServiceImplTest {
     public void findUserByName () {
         try {
             List<User> users = userService.findUserByName("1");
+            System.out.println(users);
             for (User user : users) {
                 System.out.println(user);
             }
@@ -78,6 +77,7 @@ public class UserServiceImplTest {
     public void findAllFollowing () {
         try {
             List<FollowUser> followings = userService.findAllFollowing(100002);
+            System.out.println(followings);
             for (FollowUser following : followings) {
                 System.out.println(following);
             }
@@ -89,7 +89,8 @@ public class UserServiceImplTest {
     @Test
     public void findAllFollower () {
         try {
-            List<FollowUser> followers = userService.findAllFollower(398457);
+            List<FollowUser> followers = userService.findAllFollower(100001);
+            System.out.println(followers);
             for (FollowUser follower : followers) {
                 System.out.println(follower);
             }
@@ -103,6 +104,9 @@ public class UserServiceImplTest {
         try {
             List<SongList> songLists = userService.findAllSongList(100001);
             System.out.println(songLists);
+            for (SongList songList : songLists) {
+                System.out.println(songList);
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
@@ -111,7 +115,11 @@ public class UserServiceImplTest {
     @Test
     public void findAllSong () {
         try {
-            System.out.println(userService.findAllSong(100001, 1));
+            List<Song> songs = userService.findAllSong(100001, 2);
+            System.out.println(songs);
+            for (Song song : songs) {
+                System.out.println(song);
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
@@ -121,6 +129,7 @@ public class UserServiceImplTest {
     public void findAllNews () {
         try {
             List<News> News = userService.findAllNews(100002);
+            System.out.println(News);
             for (News news : News) {
                 System.out.println(news);
             }
@@ -138,7 +147,10 @@ public class UserServiceImplTest {
             user.setSex(true);
             user.setBirthday(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             if (userService.addUser(user, "password")) {
-                System.out.println("保存用户成功");
+                System.out.println("添加用户成功");
+            }
+            else {
+                System.out.println("添加用户失败");
             }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
@@ -148,7 +160,7 @@ public class UserServiceImplTest {
     @Test
     public void updateUser () {
         try {
-            User user = userService.findUserByUid(398457);
+            User user = userService.findUserByUid(530500);
 //            user.setUsername("test");
 //            user.setLocation("上海市");
 //            user.setSex(true);
@@ -169,7 +181,7 @@ public class UserServiceImplTest {
     @Test
     public void updateUserPhone () {
         try {
-            if (userService.updateUserPhone(100006, "12345678900")) {
+            if (userService.updateUserPhone(530500, "12345678902")) {
                 System.out.println("用户电话修改成功");
             }
         } catch (Exception e) {
@@ -180,7 +192,7 @@ public class UserServiceImplTest {
     @Test
     public void updateUserPassword () {
         try {
-            if (userService.updateUserPassword(100006, "testtest", "23333llll")) {
+            if (userService.updateUserPassword(530500, "password", "password1")) {
                 System.out.println("用户密码修改成功");
             }
         } catch (Exception e) {
@@ -202,10 +214,30 @@ public class UserServiceImplTest {
     @Test
     public void createSongList () {
         try {
-            userService.createSongList(100001, "动漫");
-            userService.createSongList(100001, "流行");
-            userService.createSongList(100002, "日韩");
-            userService.createSongList(100003, "欧美");
+            if (userService.createSongList(100001, "动漫")) {
+                System.out.println("歌单添加成功");
+            }
+            else {
+                System.out.println("歌单添加失败");
+            }
+            if (userService.createSongList(100001, "流行")) {
+                System.out.println("歌单添加成功");
+            }
+            else {
+                System.out.println("歌单添加失败");
+            }
+            if (userService.createSongList(100002, "日韩")) {
+                System.out.println("歌单添加成功");
+            }
+            else {
+                System.out.println("歌单添加失败");
+            }
+            if (userService.createSongList(100003, "欧美")) {
+                System.out.println("歌单添加成功");
+            }
+            else {
+                System.out.println("歌单添加失败");
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
@@ -214,7 +246,12 @@ public class UserServiceImplTest {
     @Test
     public void removeSongList () {
         try {
-            userService.removeSongList(100001, 2);
+            if (userService.removeSongList(100001, 3)) {
+                System.out.println("歌单删除成功");
+            }
+            else {
+                System.out.println("歌单删除失败");
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
@@ -223,15 +260,33 @@ public class UserServiceImplTest {
     @Test
     public void updateSongList () {
         try {
-            userService.updateSongList(100001, 0, 10000001, SongAction.addSong);
-            userService.updateSongList(100001, 0, 10000002, SongAction.addSong);
-            userService.updateSongList(100001, 1, 10000002, SongAction.addSong);
-            userService.updateSongList(100001, 2, 10000001, SongAction.addSong);
-            userService.updateSongList(100002, 0, 10000000, SongAction.addSong);
-            userService.updateSongList(100002, 1, 10000001, SongAction.addSong);
-            userService.updateSongList(100002, 0, 10000002, SongAction.removeSong);
-            userService.updateSongList(100002, 0, 10000001, null);
-            userService.updateSongList(100003, 0, 10000001, SongAction.addSong);
+            if (userService.updateSongList(100001, 0, 10000001, SongAction.addSong)) {
+                System.out.println("歌曲添加成功");
+            }
+            if (userService.updateSongList(100001, 0, 10000002, SongAction.addSong)) {
+                System.out.println("歌曲添加成功");
+            }
+            if (userService.updateSongList(100001, 2, 10000002, SongAction.addSong)) {
+                System.out.println("歌曲添加成功");
+            }
+            if (userService.updateSongList(100001, 2, 10000001, SongAction.addSong)) {
+                System.out.println("歌曲添加成功");
+            }
+            if (userService.updateSongList(100002, 0, 10000000, SongAction.addSong)) {
+                System.out.println("歌曲添加成功");
+            }
+            if (userService.updateSongList(100002, 1, 10000001, SongAction.addSong)) {
+                System.out.println("歌曲添加成功");
+            }
+            if (userService.updateSongList(100002, 0, 10000002, SongAction.removeSong)) {
+                System.out.println("歌曲删除成功");
+            }
+            if (userService.updateSongList(100003, 0, 10000001, SongAction.addSong)) {
+                System.out.println("歌曲添加成功");
+            }
+            if (userService.updateSongList(100002, 0, 10000001, null)) {
+                System.out.println("歌曲添加成功");
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
@@ -240,7 +295,9 @@ public class UserServiceImplTest {
     @Test
     public void updateSongListName () {
         try {
-            userService.updateSongListName(100001, 4, "11");
+            if (userService.updateSongListName(100001, 3, "11")) {
+                System.out.println("歌单名称修改成功");
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
@@ -249,12 +306,21 @@ public class UserServiceImplTest {
     @Test
     public void updateFollow () {
         try {
-            userService.updateFollow(100001, 398457, FollowAction.removeFollow);
-            userService.updateFollow(100002, 398457, FollowAction.addFollow);
-            userService.updateFollow(100003, 398457, FollowAction.addFollow);
-            userService.updateFollow(100002, 100003, FollowAction.addFollow);
-            userService.updateFollow(100002, 100001, FollowAction.addFollow);
-            userService.updateFollow(100003, 100001, FollowAction.addFollow);
+            if (userService.updateFollow(100001, 100002, FollowAction.addFollow)) {
+                System.out.println("关注用户成功");
+            }
+            if (userService.updateFollow(100002, 100003, FollowAction.addFollow)) {
+                System.out.println("关注用户成功");
+            }
+            if (userService.updateFollow(100002, 100001, FollowAction.addFollow)) {
+                System.out.println("关注用户成功");
+            }
+            if (userService.updateFollow(100003, 100001, FollowAction.addFollow)) {
+                System.out.println("关注用户成功");
+            }
+            if (userService.updateFollow(100001, 100002, FollowAction.removeFollow)) {
+                System.out.println("取关用户成功");
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
@@ -263,11 +329,21 @@ public class UserServiceImplTest {
     @Test
     public void addNews () {
         try {
-            userService.addNews(100001, "hhhhhhh");
-            userService.addNews(100001, "rrrrrrrr");
-            userService.addNews(100001, "iiiiiiii");
-            userService.addNews(100003, "testtest");
-            userService.addNews(100003, "testtest4");
+            if (userService.addNews(100002, "hhhhhhh")) {
+                System.out.println("动态发布成功");
+            }
+            if (userService.addNews(100002, "rrrrrrrr")) {
+                System.out.println("动态发布成功");
+            }
+            if (userService.addNews(100001, "iiiiiiii")) {
+                System.out.println("动态发布成功");
+            }
+            if (userService.addNews(100003, "testtest")) {
+                System.out.println("动态发布成功");
+            }
+            if (userService.addNews(100003, "testtest4")) {
+                System.out.println("动态发布成功");
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
@@ -276,18 +352,28 @@ public class UserServiceImplTest {
     @Test
     public void deleteNews () {
         try {
-            userService.deleteNews(100001, 3);
+            if (userService.deleteNews(100001, 3)) {
+                System.out.println("动态删除成功");
+            }
         } catch (Exception e) {
             System.out.println(e.getClass() + " : " + e.getMessage());
         }
     }
     
-    @Test
+//    @Test
     public void deleteUser () {
         for (User user : userService.findAllUser()) {
             userService.deleteUser(user.getUid());
         }
-        addAdministrator();
+//        addAdministrator();
+    }
+    
+    @Test
+    public void findAllSelfNews () {
+        List<News> News = userService.findAllSelfNews(100001);
+        for (News news : News) {
+            System.out.println(news);
+        }
     }
     
 }
