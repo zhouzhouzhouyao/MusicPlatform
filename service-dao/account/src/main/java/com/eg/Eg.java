@@ -33,9 +33,10 @@ public class Eg {
             System.out.println("注册失败");
             System.out.println(message);
         }
+        //多例对象
         IUserService userService1 = (IUserService) applicationContext.getBean("userService");
         IUserService userService2 = (IUserService) applicationContext.getBean("userService");
-        System.out.println(userService1 == userService2);
+        System.out.println(userService1 == userService2);//false
     }
     
 }

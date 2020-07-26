@@ -168,8 +168,4 @@ public interface IUserService {
      */
     boolean login (String account, String password) throws AccountNotValidException, UserPasswordNotValidException, UidErrorException, UserPhoneNotValidException;
     
-    void createSongList (Integer uid, Integer listId);
-    
-    void deleteSongList (Integer uid, Integer listId);
-    
 }

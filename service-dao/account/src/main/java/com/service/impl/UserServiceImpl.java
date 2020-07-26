@@ -1,11 +1,9 @@
 package com.service.impl;
 
-import com.dao.IUserDao;
 import com.domain.User;
 import com.exception.*;
 import com.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,53 +18,39 @@ import java.util.Random;
  * Created on 2020/7/20.
  */
 @Service("userService")
-@Scope("prototype")
 @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = TransactionException.class)
 public class UserServiceImpl implements IUserService {
     
-    private IUserDao userDao;
-    
     private final int validUid = 100000;
-    
-    @Autowired
-    public void setUserDao (IUserDao userDao) {
-        this.userDao = userDao;
-    }
     
     @Override
     public List<User> findAll () {
         System.out.println("\n==========Service 的 findAll 方法执行了==========\n");
-        return userDao.findAll();
+        return null;
     }
     
     @Override
     public User findUserByUid (Integer uid) throws NullUserException {
         System.out.println("\n==========Service 的 findUserByUid 方法执行了==========\n");
-        User user = userDao.findUserByUid(uid);
-        if(user == null) {
-            throw new NullUserException("找不到该用户");
-        }
-        else {
-            return user;
-        }
+        return null;
     }
     
     @Override
     public List<User> findUserByName (String username) {
         System.out.println("\n==========Service 的 findUserByName 方法执行了==========\n");
-        return userDao.findUserByUsername("%" + username + "%");
+        return null;
     }
     
     @Override
     public boolean checkUserIsExistByUid (Integer uid) {
         System.out.println("\n==========Service 的 checkUserIsExistByUid 方法执行了==========\n");
-        return userDao.checkUserIsExistByUid(uid) != null;
+        return true;
     }
     
     @Override
     public boolean checkUserIsExistByPhone (String phone) {
         System.out.println("\n==========Service 的 checkUserIsExistByPhone 方法执行了==========\n");
-        return userDao.checkUserIsExistByPhone(phone) != null;
+        return true;
     }
     
     @Override
@@ -135,12 +119,12 @@ public class UserServiceImpl implements IUserService {
     
     @Override
     public int getUserPasswordByUid (Integer uid) {
-        return userDao.getUserPasswordByUid(uid);
+        return 0;
     }
     
     @Override
     public int getUserPasswordByPhone (String phone) {
-        return userDao.getUserPasswordByPhone(phone);
+        return 0;
     }
     
     @Override
@@ -168,7 +152,6 @@ public class UserServiceImpl implements IUserService {
             }
         }
         user.setPassword(password.hashCode());
-        userDao.saveUser(user);
         return true;
     }
     
@@ -180,7 +163,6 @@ public class UserServiceImpl implements IUserService {
         }
         checkUidValid(user.getUid());
         checkInfoValid(user);
-        userDao.updateUserInfo(user);
         return true;
     }
     
@@ -188,7 +170,6 @@ public class UserServiceImpl implements IUserService {
     public boolean updateVip (Integer uid) throws UidErrorException, NullUserException {
         System.out.println("\n==========Service 的 updateVip 方法执行了==========\n");
         checkUidValid(uid);
-        userDao.updateVip(uid);
         return true;
     }
     
@@ -202,7 +183,6 @@ public class UserServiceImpl implements IUserService {
             throw new UserPhoneNotValidException("该号码已被注册");
         }
         else {
-            userDao.updateUserPhone(uid, phone);
             return true;
         }
     }
@@ -225,7 +205,6 @@ public class UserServiceImpl implements IUserService {
             throw new UserPasswordNotValidException("新密码不可以与当前密码相同");
         }
         else {
-            userDao.updateUserPassword(uid, newPasswordVal);
             return true;
         }
     }
@@ -269,18 +248,6 @@ public class UserServiceImpl implements IUserService {
         else {
             return true;
         }
-    }
-    
-    @Override
-    public void createSongList (Integer uid, Integer listId) {
-        String name = uid + "_" + listId;
-        userDao.createSongList(name);
-    }
-    
-    @Override
-    public void deleteSongList (Integer uid, Integer listId) {
-        String name = uid + "_" + listId;
-        userDao.deleteSongList(name);
     }
     
 }
