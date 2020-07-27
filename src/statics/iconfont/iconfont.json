@@ -1,0 +1,86 @@
+{
+  "id": "1950323",
+  "name": "wangyiyun",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "网易云",
+  "glyphs": [
+    {
+      "icon_id": "5270852",
+      "name": "收 藏-产品详情",
+      "font_class": "shoucang",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "5330820",
+      "name": "圆点",
+      "font_class": "yuandian",
+      "unicode": "e7c2",
+      "unicode_decimal": 59330
+    },
+    {
+      "icon_id": "4328008",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "11405795",
+      "name": "听歌",
+      "font_class": "icon-test",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "1132491",
+      "name": "左箭头",
+      "font_class": "zuojiantou",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "15997009",
+      "name": "左箭头",
+      "font_class": "zuojiantou-copy",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "15997011",
+      "name": "左箭头",
+      "font_class": "zuojiantou-copy1",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "15997016",
+      "name": "左箭头",
+      "font_class": "zuojiantou-copy2",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "15997017",
+      "name": "左箭头",
+      "font_class": "zuojiantou-copy3",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "15997018",
+      "name": "左箭头",
+      "font_class": "zuojiantou-copy-copy",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
+      "icon_id": "5640058",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    }
+  ]
+}
