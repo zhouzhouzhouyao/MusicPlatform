@@ -1,3 +1,0 @@
-account文件夹下为删除了dao层相关代码的service层与用户信息相关的基础代码
-Follow&News&SongList文件夹下为含有dao层相关代码的service层代码，测试接口时删除dao层即可
-service&dao层为全部基础功能，已初步验证逻辑正确性，并完善了Eg类代码，调用接口参考该文件夹下的Eg类，该文件夹下也有完善的单元测试类
