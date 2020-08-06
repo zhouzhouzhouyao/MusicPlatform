@@ -310,7 +310,6 @@ class Recommend extends React.Component{
                               </dd>
 
                           </dl>
-                
                         </div>
                     </Col>
                     <Col span={5} className="right-music">
@@ -364,14 +363,12 @@ class Recommend extends React.Component{
                            </ul>
                            <a href='' className='apply'>申请成为音乐人</a>
                         </div>
-
                     </Col>
                     <Col span={1} className="back-to-top">
                         {/* 回到顶部 */}
                         <BackTop />
                     </Col>
                 </Row>
-
                 {/* 页脚 */}
                 <Footer/>
             </div>

@@ -1,0 +1,46 @@
+.all-songlist {
+    width: 720px;
+    margin: 0 auto;
+    background-color: #fff;
+    height: 1200px;
+    padding: 40px;
+}
+
+.all-songlist .song-list img {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 8px;
+}
+
+.songlist-title {
+    height: 40px;
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+
+.songer-list li {
+    float: left;
+    width: 147px;
+    height: 184px;
+    padding: 0 0 30px 17px;
+    list-style: none;
+}
+
+.songer-list li a {
+    font-size: 12px;
+    color: #000;
+}
+
+.songer-list li i {
+    float: right;
+    color: red;
+}
+
+.song-list {
+    list-style: none;
+}
+
+.singer {
+    font-size: 12px;
+    color: #666;
+}

@@ -1,0 +1,222 @@
+.rankwrapper {
+    width: 800px;
+    margin: 0 auto;
+    /* background-color: pink; */
+    height: 1200px;
+}
+
+.rankleft {
+    float: left;
+    width: 25%;
+    height: 100%;
+    background-color: #F9F9F9;
+    font-size: 12px;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 30px;
+    box-sizing: border-box;
+    border-left: 1px solid #D3D3D3;
+}
+
+.rankleft h2 {
+    padding: 0 10px 12px 15px;
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    font-family: simsun, \5b8b\4f53;
+    margin: 0;
+}
+
+.rankleft ul {
+    width: 100%;
+}
+
+.rankleft li {
+    position: relative;
+    zoom: 1;
+    height: 62px;
+    cursor: pointer;
+    vertical-align: middle;
+    list-style: none;
+    padding: 10px 0 10px 20px;
+}
+
+.rankleft .desc {
+    float: left;
+}
+
+.rankleft span {
+    color: #000;
+}
+
+.rankleft p {
+    color: #999;
+    margin-top: 6px;
+    vertical-align: middle;
+}
+
+.rankleft img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.rankleft li:hover {
+    background: #F4F2F2;
+}
+
+.rankright {
+    float: left;
+    width: 75%;
+    height: 100%;
+    background-color: #FFFFFF;
+}
+
+.rankright .title {
+    height: 200px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.rankright .title img {
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin-right: 15px;
+}
+
+.rankright .title .date {
+    font-size: 12px;
+}
+
+.rankright .title .date i {
+    margin-right: 4px;
+}
+
+.rankright .title a {
+    /* width: 80px; */
+    height: 25px;
+    background-color: #F1F1F1;
+    float: left;
+    text-decoration: none;
+    white-space: nowrap;
+    height: 31px;
+    line-height: 31px;
+    overflow: hidden;
+    padding: 0 7px 0 10px;
+    vertical-align: top;
+    text-align: center;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #CDCDCD;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 30px 2px;
+    color: #333;
+    font-size: 12px;
+}
+
+.rankright .title a i {
+    margin: 0px 1px 0 0;
+    font-weight: 700;
+}
+
+.rankright .title a:hover {
+    background-color: #FEFEFE;
+}
+
+.rankright .songlist {
+    width: 100%;
+    padding: 20px;
+}
+
+.rankright .songlist .u-title {
+    height: 35px;
+    border-bottom: 2px solid #c20c0c;
+}
+
+.rankright .songlist .u-title h3 {
+    float: left;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.rankright .songlist .u-title span {
+    float: left;
+    font-size: 12px;
+    margin: 9px 0 0 20px;
+}
+
+.rankright .songlist table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 12px;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    float: left;
+    margin-top: -3px;
+}
+
+.rankright .songlist table thead {
+    border-bottom: 2px solid #D4D4D4;
+    height: 15px;
+    line-height: 15px;
+    background-color: #F3F3F3;
+}
+
+.rankright .songlist table th {
+    border-left: 2px solid #DFDFDF;
+    padding: 8px 10px;
+}
+
+.rankright .songlist table tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.rankright .songlist table td {
+    padding: 6px 10px;
+    text-align: left;
+}
+
+.rankright .songlist table img {
+    width: 50px;
+    height: 50px;
+}
+
+.rankright .songlist table .first {
+    width: 70px;
+    height: 60px;
+}
+
+.rankright .songlist table .second {
+    width: 270px;
+    height: 40px;
+    padding: 10px;
+}
+
+.rankright .songlist table .second .iconfont {
+    margin: 0 8px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #B6B6B6;
+}
+
+.rankright .songlist table .second a {
+    font-size: 12px;
+    color: #333;
+}
+
+.rankright .songlist table .third {
+    width: 90px;
+    height: 48px;
+    padding: 6px 10px;
+}
+
+.rankright .songlist table .fourth {
+    width: 173px;
+    height: 60px;
+}
