@@ -1,0 +1,360 @@
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 220px;
+    line-height: 220px;
+    background: #364d79;
+    overflow: hidden;
+}
+
+.slick-slider {
+    width: 720px;
+    /* width: 900px; */
+    margin: auto;
+}
+
+.ant-carousel .slick-slide h3 {
+    color: #fff;
+}
+
+.left-out-line {
+    position: absolute;
+    /*width: 20px;*/
+    /*height: 50px;*/
+    margin: 75px 20px 0 260px;
+    vertical-align: center;
+}
+
+left-out-line:hover {
+    background-color: #3333;
+}
+
+.right-out-line {
+    position: absolute;
+    width: 20px;
+    height: 50px;
+    margin: -130px 20px 0 1110px;
+}
+
+.left-music,
+.right-music {
+    background-color: #ffffff;
+}
+
+.left-music,
+.right-music {
+    border: 1px solid #d3d3d3;
+}
+
+
+/* 设置回到顶部样式 */
+
+.ant-back-top {
+    right: 175px;
+}
+
+img {
+    width: 100%;
+}
+
+
+/* B */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hot-recommend {
+    width: 689px;
+    height: 523px;
+}
+
+.hot-recommend .title,
+.hot-list .title {
+    width: 689px;
+    height: 33px;
+    line-height: 33px;
+    padding: 0 10px 0 34px;
+    border-bottom: 2px solid #C10D0C;
+    color: #333;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 28px;
+    font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+    margin-top: 15px;
+}
+
+.hot-recommend .title i,
+.hot-list .title i {
+    font-size: 18px;
+    color: #C10D0C;
+    margin-right: 6px;
+}
+
+.hot-recommend ul {
+    width: 731px;
+    height: 468px;
+    padding: 0;
+}
+
+.hot-recommend ul li {
+    position: relative;
+    width: 144px;
+    height: 171px;
+    background: url(http://p1.music.126.net/lzd14C7tAS8lptJx-TTvMA==/109951164990046298.jpg?param=140y140) no-repeat;
+    background-size: contain;
+    text-decoration: none;
+    list-style: none;
+    font-size: 12px;
+    float: left;
+    margin: 20px 15px;
+}
+
+.hot-recommend ul li .bottom {
+    width: 144px;
+    height: 27px;
+    line-height: 27px;
+    position: absolute;
+    left: 0;
+    top: 144px;
+    color: #ccc;
+    background-color: rgba(0, 0, 0, .4);
+    box-sizing: border-box;
+    padding: 0 12px;
+}
+
+.hot-recommend ul li .bottom i {
+    float: left;
+    height: 16px;
+    width: 16px;
+}
+
+.hot-recommend ul li .bottom span {
+    float: left;
+    height: 16px;
+    margin-left: 4px;
+}
+
+.recommend-list .bottom a {
+    float: right;
+    width: 16px;
+    height: 16px;
+    color: #ccc;
+}
+
+.recommend-list div a:hover {
+    color: #fff;
+}
+
+.recommend-list .desc {
+    position: absolute;
+    top: 171px;
+    left: 0;
+    width: 140px;
+    height: 38.4px;
+    line-height: 19.4px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.recommend-list .desc:hover {
+    text-decoration: underline;
+}
+
+.hot-list dl {
+    float: left;
+    width: 230px;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hot-list .top {
+    width: 230px;
+    height: 100px;
+    padding: 20px 0 0 19px;
+    /* background: #f4f4f4; */
+}
+
+.hot-list .top img {
+    height: 80px;
+    width: 80px;
+    float: left;
+    margin-left: 6px;
+    margin-top: -6px;
+}
+
+.hot-list .top .desc {
+    float: left;
+    height: 80px;
+    line-height: 25px;
+    margin-left: 8px;
+}
+
+.hot-list .top .desc h4 {
+    font-weight: bold;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hot-list .top .desc a {
+    margin-left: 8px;
+    color: #c3c3c3;
+    font-size: 22px;
+}
+
+.hot-list .top .desc a:hover {
+    color: #333;
+}
+
+.hot-list dl {
+    float: left;
+    border-left: 1px solid #D2D2D2;
+    width: 33.3%;
+}
+
+.hot-list dd {
+    width: 230px;
+    height: 352px;
+}
+
+.hot-list ol {
+    list-style: none;
+}
+
+.hot-list .list-item {
+    width: 230px;
+    height: 32px;
+    color: #000;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 32px;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+
+.hot-list .list-item span {
+    float: left;
+    position: relative;
+    width: 35px;
+    height: 32px;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+}
+
+.hot-list .list-item a {
+    color: #000;
+    font-size: 12px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.list-color-1 {
+    background-color: #F4F4F4;
+}
+
+.list-color-2 {
+    background-color: #E8E8E8;
+}
+
+
+/* 右边歌手模块 */
+
+.right-music .singer {
+    margin-top: 15px;
+    width: 250px;
+    height: 455px;
+    font-size: 12px;
+}
+
+.right-music .singer h3 {
+    margin: 0 20px;
+    border-bottom: 1px solid #ccc;
+    height: 23px;
+    line-height: 23px;
+}
+
+.right-music .singer h3 span {
+    float: left;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.right-music .singer h3 a {
+    float: right;
+    color: #666;
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+.right-music .singer ul {
+    width: 230px;
+    height: 380px;
+    margin: 6px 0 14px 20px;
+}
+
+.right-music .singer ul li {
+    width: 210px;
+    height: 62px;
+    list-style: none;
+    background-color: #FAFAFA;
+    margin-bottom: 20px;
+}
+
+.right-music .singer ul li img {
+    width: 62px;
+    height: 62px;
+    float: left;
+}
+
+.right-music .singer ul .info {
+    float: left;
+    line-height: 23px;
+    padding-left: 14px;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.right-music .singer ul .info h4 {
+    font-size: 14px;
+    color: #333;
+    font-weight: 700;
+}
+
+.right-music .singer ul .info p {
+    color: #777;
+    font-size: 12px
+}
+
+.right-music .singer .apply {
+    width: 210px;
+    height: 31px;
+    display: inline-block;
+    height: 31px;
+    line-height: 31px;
+    overflow: hidden;
+    vertical-align: top;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 5px 0 0;
+    white-space: nowrap;
+    border-radius: 4px;
+    margin-left: 20px;
+    background-color: #F2F2F2;
+    margin-top: 20px;
+}
+
+.right-music .singer li:hover,
+.right-music .singer .apply:hover {
+    background: #f4f4f4;
+}

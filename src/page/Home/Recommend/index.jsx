@@ -20,6 +20,9 @@ class Recommend extends React.Component{
     prev() {
         this.slider.slick.slickPrev();
     }
+    SongDetail() {
+
+    }
 
     render() {
         const lunboSetting = {
@@ -55,7 +58,7 @@ class Recommend extends React.Component{
                               热门推荐
                           </div>
                           <ul className='recommend-list'>
-                              <li>
+                              <li onClick={this.SongDetail}>
                                   <div className='bottom'>
                                       <i className='iconfont'>&#xe618;</i>
                                       <span>110万 </span>
@@ -72,7 +75,7 @@ class Recommend extends React.Component{
                                       <a className='iconfont'>&#xe645;</a>
                                   </div>
                                   <a className='desc'>
-                                     希望这个夏天，西瓜甜一点，快乐多一点
+                                      万有或虚无｜浪漫主义式的追寻
                                   </a>
                               </li>
                               <li>
@@ -82,7 +85,7 @@ class Recommend extends React.Component{
                                       <a className='iconfont'>&#xe645;</a>
                                   </div>
                                   <a className='desc'>
-                                     希望这个夏天，西瓜甜一点，快乐多一点
+                                      攻略男神100%！表白就要唱出来鸭！
                                   </a>
                               </li>
                               <li>
@@ -92,7 +95,7 @@ class Recommend extends React.Component{
                                       <a className='iconfont'>&#xe645;</a>
                                   </div>
                                   <a className='desc'>
-                                     希望这个夏天，西瓜甜一点，快乐多一点
+                                      伤感片段：请不要辜负我对你的热情
                                   </a>
                               </li>
                               <li>
@@ -102,7 +105,7 @@ class Recommend extends React.Component{
                                       <a className='iconfont'>&#xe645;</a>
                                   </div>
                                   <a className='desc'>
-                                     希望这个夏天，西瓜甜一点，快乐多一点
+                                      翻唱片段 | 花开花谢 再会
                                   </a>
                               </li>
                               <li>
@@ -112,17 +115,7 @@ class Recommend extends React.Component{
                                       <a className='iconfont'>&#xe645;</a>
                                   </div>
                                   <a className='desc'>
-                                     希望这个夏天，西瓜甜一点，快乐多一点
-                                  </a>
-                              </li>
-                              <li>
-                                  <div className='bottom'>
-                                      <i className='iconfont'>&#xe618;</i>
-                                      <span>110万 </span>
-                                      <a className='iconfont'>&#xe645;</a>
-                                  </div>
-                                  <a className='desc'>
-                                     希望这个夏天，西瓜甜一点，快乐多一点
+                                      给喜欢的人听
                                   </a>
                               </li>
                           </ul>
@@ -377,6 +370,10 @@ class Recommend extends React.Component{
             </div>
         )
     }
+}
+
+class SongDetail extends React.Component{
+
 }
 
 export default Recommend
