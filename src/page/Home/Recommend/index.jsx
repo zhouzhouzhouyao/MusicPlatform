@@ -5,8 +5,8 @@ import './style.css'
 import Footer from "../../../components/Footer";
 import pinkfloyd from '../../../../src/assets/MusicCover/Pink-Floyd.jpg'
 
-import {icon1,icon2} from '../../../statics/yuandian.png'
-import '../../../statics/iconfont/iconfont.css'
+import {icon1,icon2} from '../../../assets/MusicCover/yuandian.png'
+import '../../../assets/iconfont/iconfont.css'
 
 class Recommend extends React.Component{
     constructor(props) {
@@ -310,7 +310,7 @@ class Recommend extends React.Component{
                               </dd>
 
                           </dl>
-                
+
                         </div>
                     </Col>
                     <Col span={5} className="right-music">
