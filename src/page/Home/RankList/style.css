@@ -2,7 +2,8 @@
     width: 800px;
     margin: 0 auto;
     /* background-color: pink; */
-    height: 1200px;
+    /* height: 3000px; */
+    overflow: hidden;
 }
 
 .rankleft {
@@ -130,6 +131,7 @@
 .rankright .songlist {
     width: 100%;
     padding: 20px;
+    overflow: hidden;
 }
 
 .rankright .songlist .u-title {
@@ -219,4 +221,154 @@
 .rankright .songlist table .fourth {
     width: 173px;
     height: 60px;
+}
+
+.comment {
+    width: 100%;
+    padding: 20px;
+}
+
+.comment-title {
+    height: 33px;
+    border-bottom: 2px solid #c20c0c;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 20px;
+}
+
+.comment-title h3 {
+    float: left;
+    font-size: 20px;
+    line-height: 28px;
+    color: #333;
+    font-weight: 400;
+}
+
+.comment-title span {
+    float: left;
+    color: #666;
+    margin: 9px 0 0 20px;
+    font-size: 12px;
+}
+
+.comment img {
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-right: 12px;
+}
+
+.content {
+    float: left;
+    width: 480px;
+}
+
+.comment-head {
+    overflow: hidden;
+}
+
+.comment-head textarea {
+    display: block;
+    height: 50px;
+    width: 100%;
+    font-size: 12px;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textarea;
+    background-color: -internal-light-dark-color(white, black);
+    -webkit-rtl-ordering: logical;
+    flex-direction: column;
+    resize: none;
+    overflow: auto;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.comment-head a {
+    float: right;
+    width: 46px;
+    height: 25px;
+    color: #fff;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+    font-size: 12px;
+    background-color: #3282CE;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.comment-head a:hover {
+    background-color: #418FD8;
+}
+
+.comment-body .title {
+    height: 20px;
+    border-bottom: 1px solid #cfcfcf;
+}
+
+.comment-body .title h3 {
+    text-indent: -20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.comment-body .list {
+    position: relative;
+    width: 100%;
+    height: 82px;
+    padding: 15px 0;
+    border-top: 1px dotted #ccc;
+}
+
+.comment-body .list .content span {
+    font-size: 12px;
+    color: #333333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.comment-body .list img {
+    float: left;
+}
+
+.comment-body .bottom {
+    position: absolute;
+    height: 16px;
+    line-height: 16px;
+    bottom: 2px;
+    text-align: right;
+    width: 90%;
+}
+
+.comment-body .bottom i {
+    color: #1175BB;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.comment-body .bottom a {
+    font-size: 12px;
+    color: #666;
+}
+
+.content .id {
+    font-size: 12px;
+}
+
+.comment-body .bottom span {
+    float: left;
+    font-size: 12px;
+    color: #999;
 }

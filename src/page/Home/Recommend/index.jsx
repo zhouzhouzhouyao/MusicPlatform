@@ -5,7 +5,6 @@ import './style.css'
 import Footer from "../../../components/Footer";
 import pinkfloyd from '../../../../src/assets/MusicCover/Pink-Floyd.jpg'
 
-import {icon1,icon2} from '../../../assets/MusicCover/yuandian.png'
 import '../../../assets/iconfont/iconfont.css'
 
 class Recommend extends React.Component{
@@ -306,7 +305,7 @@ class Recommend extends React.Component{
 
                         </div>
                     </Col>
-                    <Col span={5} className="right-music">
+                    <Col span={4.5} className="right-music">
                        {/* 歌手 */}
                         <div className='singer'>
                            <h3>

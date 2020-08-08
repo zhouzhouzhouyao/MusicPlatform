@@ -224,6 +224,53 @@ const RanList = () => {
                           </tbody>
                       </table>
                   </div>
+                  <div className='comment'>
+                    <div className='comment-title'>
+                        <h3>评论</h3>
+                        <span>共191069条评论</span>
+                    </div>
+                    <div className='comment-head'>
+                        <img src='https://p2.music.126.net/gXGlysrRNf3WWnPkmrlmnw==/109951165168051838.jpg?param=50y50'/>
+                        <div className='content'>
+                            <textarea placeholder='评论'/><br/>
+                            <a>评论</a>
+                        </div>
+                        
+                    </div>
+                    <div className='comment-body'>
+                       <div className='title'>
+                           <h3>精彩评论</h3>
+                       </div>
+                       <div className='list'>
+                           <img src="https://p1.music.126.net/BxCSxny7i-NpEZRrAGMOmw==/109951165203889073.jpg?param=50y50" alt=""/>
+                            <div className='content'>
+                                <a className='id'>被学习压迫的ZQ</a>
+                                <span> :冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲</span>
+                                <div className='bottom'>
+                                    <span>14:30</span>
+                                    <i className='iconfont'>&#xe60d;</i>
+                                    (7681)
+                                    |&nbsp;
+                                    <a>回复</a>
+                                </div>
+                            </div>
+                       </div>
+                       <div className='list'>
+                           <img src="https://p1.music.126.net/BxCSxny7i-NpEZRrAGMOmw==/109951165203889073.jpg?param=50y50" alt=""/>
+                            <div className='content'>
+                                <a>被学习压迫的ZQ</a>
+                                <span> :冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲</span>
+                                <div className='bottom'>
+                                    <span>14:30</span>
+                                    <i className='iconfont'>&#xe60d;</i>
+                                    (7869)
+                                    |&nbsp;
+                                    <a>回复</a>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+                  </div>
               </div>
            </div>
           <Footer/>

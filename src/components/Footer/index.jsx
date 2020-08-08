@@ -6,7 +6,7 @@ import {ChromeOutlined} from "@ant-design/icons";
 const Footer = () =>{
     return(
         <Row className="footer">
-            <Col span={15} offset={5}>
+            <Col span={15} offset={4}>
                 <div className="copy-right">
                     <p className="service-link">
                         <a href="#">服务条款</a>
