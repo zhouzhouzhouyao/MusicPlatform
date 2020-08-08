@@ -2,6 +2,10 @@ package com.service.impl;
 
 import com.dao.IUserDao;
 import com.domain.*;
+import com.enums.FollowActionEnum;
+import com.enums.ShowNewsActionEnum;
+import com.enums.SongActionEnum;
+import com.enums.UpdateUserActionEnum;
 import com.exception.*;
 import com.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author Liu
@@ -45,7 +46,7 @@ public class UserServiceImpl implements IUserService {
     private boolean checkUserIsNotExistByUid (Integer uid) throws SystemErrorException {
         User user;
         try {
-            user = userDao.findUserByUid(uid);
+            user = userDao.findUserById(uid);
         } catch (Exception exception) {
             throw new SystemErrorException("系统异常");
         }
@@ -404,7 +405,7 @@ public class UserServiceImpl implements IUserService {
         }
         User user;
         try {
-            user = userDao.findUserByUid(uid);
+            user = userDao.findUserById(uid);
         } catch (Exception exception) {
             throw new SystemErrorException("系统异常");
         }
@@ -418,6 +419,9 @@ public class UserServiceImpl implements IUserService {
     
     @Override
     public List<User> findUserByName (String username) throws SystemErrorException {
+        if (username == null || username.length() == 0) {
+            throw new NullUserException("用户名为空");
+        }
         String name = "%" + username + "%";
         List<User> res;
         try {
@@ -907,28 +911,6 @@ public class UserServiceImpl implements IUserService {
             }
             return true;
         }
-    }
-    
-    public void addAdministrator () {
-        for (User user : userDao.addAdministrator()) {
-            userDao.addUser(user);
-        }
-    }
-    
-    @Override
-    public List<User> findAllUser () throws SystemErrorException {
-        List<User> users;
-        try {
-            users = userDao.findAllUser();
-        } catch (Exception exception) {
-            throw new SystemErrorException("系统异常");
-        }
-        return users;
-    }
-    
-    @Override
-    public void deleteUser (Integer uid) {
-        userDao.deleteUser(uid);
     }
     
 }

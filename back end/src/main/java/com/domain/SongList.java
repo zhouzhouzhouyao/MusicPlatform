@@ -59,9 +59,4 @@ public class SongList implements Serializable {
         this.songs = songs;
     }
     
-    @Override
-    public String toString () {
-        return "SongList{" + "uid=" + uid + ", listId=" + listId + ", listName='" + listName + '\'' + '}';
-    }
-    
 }

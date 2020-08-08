@@ -68,9 +68,4 @@ public class FollowUser implements Serializable {
         this.location = location;
     }
     
-    @Override
-    public String toString () {
-        return "FollowUser{" + "uid=" + uid + ", username='" + username + '\'' + ", vip=" + vip + ", sex=" + sex + ", location='" + location + '\'' + ", birthday='" + birthday + '\'' + '}';
-    }
-    
 }

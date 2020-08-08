@@ -1,9 +1,12 @@
 package com.controller;
 
 import com.domain.*;
+import com.enums.FollowActionEnum;
+import com.enums.ShowNewsActionEnum;
+import com.enums.SongActionEnum;
+import com.enums.UpdateUserActionEnum;
 import com.exception.*;
-import com.service.*;
-import com.service.FollowActionEnum;
+import com.service.IUserService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -25,14 +29,16 @@ public class ServiceController {
     
     private JSONObject jsonObject;
     
+    private JSONObject dataJson;
+    
     @Autowired
     public void setUserService (IUserService userService) {
         this.userService = userService;
     }
     
-    private void transfer (Object object, Class<?> clazz) {
+    private void transfer (Object object) {
         JSONObject subObject = new JSONObject();
-        if (clazz.equals(User.class)) {
+        if (object instanceof User) {
             User user = (User) object;
             subObject.put("uid", user.getUid());
             subObject.put("phone", user.getPhone());
@@ -41,9 +47,9 @@ public class ServiceController {
             subObject.put("sex", user.getSex());
             subObject.put("birthday", user.getBirthday());
             subObject.put("location", user.getLocation());
-            jsonObject.accumulate("User", subObject);
+            dataJson.accumulate("User", subObject);
         }
-        else if (clazz.equals(FollowUser.class)) {
+        else if (object instanceof FollowUser) {
             FollowUser user = (FollowUser) object;
             subObject.put("uid", user.getUid());
             subObject.put("username", user.getUsername());
@@ -51,31 +57,31 @@ public class ServiceController {
             subObject.put("sex", user.getSex());
             subObject.put("birthday", user.getBirthday());
             subObject.put("location", user.getLocation());
-            jsonObject.accumulate("FollowUser", subObject);
+            dataJson.accumulate("FollowUser", subObject);
         }
-        else if (clazz.equals(SongList.class)) {
+        else if (object instanceof SongList) {
             SongList songList = (SongList) object;
             subObject.put("uid", songList.getUid());
             subObject.put("listId", songList.getListId());
             subObject.put("listName", songList.getListName());
-            jsonObject.accumulate("SongList", subObject);
+            dataJson.accumulate("SongList", subObject);
         }
-        else if (clazz.equals(Song.class)) {
+        else if (object instanceof Song) {
             Song song = (Song) object;
             subObject.put("songId", song.getSongId());
             subObject.put("name", song.getName());
             subObject.put("singer", song.getSinger());
             subObject.put("url", song.getUrl());
             subObject.put("vip", song.getVip());
-            jsonObject.accumulate("Song", subObject);
+            dataJson.accumulate("Song", subObject);
         }
-        else if (clazz.equals(News.class)) {
+        else if (object instanceof News) {
             News news = (News) object;
             subObject.put("newsId", news.getNewsId());
             subObject.put("uid", news.getUid());
             subObject.put("info", news.getInfo());
             subObject.put("time", news.getTime());
-            jsonObject.accumulate("News", subObject);
+            dataJson.accumulate("News", subObject);
         }
         jsonObject.put("success", true);
     }
@@ -100,14 +106,31 @@ public class ServiceController {
         return listId;
     }
     
+    private void getSongs (List<Song> songs) {
+        if (songs != null) {
+            for (Song song : songs) {
+                transfer(song);
+            }
+            if (!jsonObject.isEmpty()) {
+                jsonObject.accumulate("data", dataJson);
+            }
+            jsonObject.put("success", true);
+        }
+        else {
+            throw new SongListErrorException("歌单加载失败");
+        }
+    }
+    
     private void txException (TransactionException e) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         jsonObject.put("success", false);
-        jsonObject.put("err", e.getClass() + " : " + e.getMessage());
+        jsonObject.put("err", e.getClass().getSimpleName() + " : " + e.getMessage());
     }
     
     private void exception (Exception e) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         jsonObject.put("success", false);
         jsonObject.put("err", "系统异常：" + e.getMessage());
     }
@@ -116,12 +139,14 @@ public class ServiceController {
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     public String login (HttpServletRequest request) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             String account = request.getParameter("account");
             String password = request.getParameter("password");
             User user = userService.login(account, password);
             if (user != null) {
-                transfer(user, User.class);
+                transfer(user);
+                jsonObject.accumulate("data", dataJson);
             }
             else {
                 throw new TransactionException("登陆失败");
@@ -135,41 +160,36 @@ public class ServiceController {
     }
     
     @ResponseBody
-    @RequestMapping(value = "/searchUserByUid", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public String findUserByUid (HttpServletRequest request) {
+    @RequestMapping(value = "/search", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    public String findUser (HttpServletRequest request) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
-            Integer uid = getUid(request);
-            User user = userService.findUserByUid(uid);
-            if (user != null) {
-                transfer(user, User.class);
+            String account = request.getParameter("account");
+            if (account == null) {
+                throw new TransactionException("账户为空");
             }
             else {
-                throw new TransactionException("查找用户失败");
-            }
-        } catch (TransactionException e) {
-            txException(e);
-        } catch (Exception e) {
-            exception(e);
-        }
-        return jsonObject.toString();
-    }
-    
-    @ResponseBody
-    @RequestMapping(value = "/searchUserByName", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public String findUserByName (HttpServletRequest request) {
-        jsonObject = new JSONObject();
-        try {
-            String name = request.getParameter("username");
-            List<User> users = userService.findUserByName(name);
-            if (users != null) {
+                List<User> users = new LinkedList<>();
+                if (account.length() == 6) {
+                    try {
+                        int uid = Integer.parseInt(account);
+                        User user = userService.findUserByUid(uid);
+                        if (user != null) {
+                            users.add(user);
+                        }
+                    } catch (Exception ignored) {
+                        //尝试解析 uid，若可以解析为 uid 则将 uid 查找结果加入到结果集中，否则只按照查找用户名处理
+                    }
+                }
+                users.addAll(userService.findUserByName(account));
                 for (User user : users) {
-                    transfer(user, User.class);
+                    transfer(user);
+                }
+                if (!dataJson.isEmpty()) {
+                    jsonObject.accumulate("data", dataJson);
                 }
                 jsonObject.put("success", true);
-            }
-            else {
-                throw new TransactionException("查找用户失败");
             }
         } catch (TransactionException e) {
             txException(e);
@@ -183,6 +203,7 @@ public class ServiceController {
     @RequestMapping(value = "/follow", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     public String findAllFollow (HttpServletRequest request) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             Integer uid = getUid(request);
             List<FollowUser> users;
@@ -198,7 +219,10 @@ public class ServiceController {
             }
             if (users != null) {
                 for (FollowUser user : users) {
-                    transfer(user, FollowUser.class);
+                    transfer(user);
+                }
+                if (!jsonObject.isEmpty()) {
+                    jsonObject.accumulate("data", dataJson);
                 }
                 jsonObject.put("success", true);
             }
@@ -217,12 +241,16 @@ public class ServiceController {
     @RequestMapping(value = "/songList", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     public String findAllSongList (HttpServletRequest request) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             Integer uid = getUid(request);
             List<SongList> lists = userService.findAllSongList(uid);
             if (lists != null) {
                 for (SongList list : lists) {
-                    transfer(list, SongList.class);
+                    transfer(list);
+                }
+                if (!jsonObject.isEmpty()) {
+                    jsonObject.accumulate("data", dataJson);
                 }
                 jsonObject.put("success", true);
             }
@@ -241,13 +269,17 @@ public class ServiceController {
     @RequestMapping(value = "/songs", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     public String findAllSongInList (HttpServletRequest request) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             Integer uid = getUid(request);
             Integer listId = getListId(request);
             List<Song> songs = userService.findAllSongInList(uid, listId);
             if (songs != null) {
                 for (Song song : songs) {
-                    transfer(song, Song.class);
+                    transfer(song);
+                }
+                if (!jsonObject.isEmpty()) {
+                    jsonObject.accumulate("data", dataJson);
                 }
                 jsonObject.put("success", true);
             }
@@ -266,18 +298,11 @@ public class ServiceController {
     @RequestMapping(value = "/singer", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     public String findSongBySinger (HttpServletRequest request) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             String singer = request.getParameter("singer");
             List<Song> songs = userService.findSongBySinger(singer);
-            if (songs != null) {
-                for (Song song : songs) {
-                    transfer(song, Song.class);
-                }
-                jsonObject.put("success", true);
-            }
-            else {
-                throw new SongListErrorException("歌单加载失败");
-            }
+            getSongs(songs);
         } catch (TransactionException e) {
             txException(e);
         } catch (Exception e) {
@@ -290,17 +315,10 @@ public class ServiceController {
     @RequestMapping(value = "/top10Songs", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
     public String findTopSongs () {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             List<Song> songs = userService.findTopSongs();
-            if (songs != null) {
-                for (Song song : songs) {
-                    transfer(song, Song.class);
-                }
-                jsonObject.put("success", true);
-            }
-            else {
-                throw new SongListErrorException("歌单加载失败");
-            }
+            getSongs(songs);
         } catch (TransactionException e) {
             txException(e);
         } catch (Exception e) {
@@ -311,19 +329,12 @@ public class ServiceController {
     
     @ResponseBody
     @RequestMapping(value = "/dailyRecommend", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-    public String DailyRecommend () {
+    public String dailyRecommend () {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             List<Song> songs = userService.findRandomSongs();
-            if (songs != null) {
-                for (Song song : songs) {
-                    transfer(song, Song.class);
-                }
-                jsonObject.put("success", true);
-            }
-            else {
-                throw new SongListErrorException("歌单加载失败");
-            }
+            getSongs(songs);
         } catch (TransactionException e) {
             txException(e);
         } catch (Exception e) {
@@ -333,15 +344,29 @@ public class ServiceController {
     }
     
     @ResponseBody
-    @RequestMapping(value = "/myZone", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public String myZone (HttpServletRequest request) {
+    @RequestMapping(value = "/news", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    public String news (HttpServletRequest request) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             Integer uid = getUid(request);
-            List<News> newsList = userService.findAllNews(uid, ShowNewsActionEnum.SELF);
+            String type = request.getParameter("type");
+            List<News> newsList;
+            if ("selfzone".equals(type)) {
+                newsList = userService.findAllNews(uid, ShowNewsActionEnum.SELF);
+            }
+            else if ("friends".equals(type)) {
+                newsList = userService.findAllNews(uid, ShowNewsActionEnum.ALL);
+            }
+            else {
+                throw new TransactionException("错误的请求");
+            }
             if (newsList != null) {
                 for (News news : newsList) {
-                    transfer(news, News.class);
+                    transfer(news);
+                }
+                if (!dataJson.isEmpty()) {
+                    jsonObject.accumulate("data", dataJson);
                 }
                 jsonObject.put("success", true);
             }
@@ -357,33 +382,10 @@ public class ServiceController {
     }
     
     @ResponseBody
-    @RequestMapping(value = "/friends", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public String friends (HttpServletRequest request) {
-        jsonObject = new JSONObject();
-        try {
-            Integer uid = getUid(request);
-            List<News> newsList = userService.findAllNews(uid, ShowNewsActionEnum.ALL);
-            if (newsList != null) {
-                for (News news : newsList) {
-                    transfer(news, News.class);
-                }
-                jsonObject.put("success", true);
-            }
-            else {
-                throw new SystemErrorException("动态加载失败");
-            }
-        } catch (TransactionException e) {
-            txException(e);
-        } catch (Exception e) {
-            exception(e);
-        }
-        return jsonObject.toString();
-    }
-    
-    @ResponseBody
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     public String addUser (HttpServletRequest request) {
         jsonObject = new JSONObject();
+        dataJson = new JSONObject();
         try {
             String phone = request.getParameter("phone");
             String username = request.getParameter("username");
@@ -401,7 +403,8 @@ public class ServiceController {
             user.setLocation(location);
             boolean flag = userService.addUser(user, password);
             if (flag) {
-                transfer(user, User.class);
+                transfer(user);
+                jsonObject.accumulate("data", dataJson);
             }
             else {
                 throw new SystemErrorException("用户添加失败");
@@ -689,35 +692,5 @@ public class ServiceController {
         }
         return jsonObject.toString();
     }
-    
-    @ResponseBody
-    @RequestMapping(value = "/findAllUser", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-    public String findAll () {
-        jsonObject = new JSONObject();
-        try {
-            List<User> users = userService.findAllUser();
-            for (User user : users) {
-                transfer(user, User.class);
-            }
-            jsonObject.put("success", true);
-        } catch (TransactionException e) {
-            txException(e);
-        } catch (Exception e) {
-            exception(e);
-        }
-        return jsonObject.toString();
-    }
-//    @ResponseBody
-//    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-//    public String  (HttpServletRequest request) {
-//        jsonObject = new JSONObject();
-//        try {
-//
-//        } catch (TransactionException e) {
-//            txException(e);
-//        } catch (Exception e) {
-//            exception();
-//        }
-//        return jsonObject.toString();
-//    }
+
 }

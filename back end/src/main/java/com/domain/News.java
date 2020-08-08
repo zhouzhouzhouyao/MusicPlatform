@@ -49,9 +49,4 @@ public class News implements Serializable {
         this.time = time;
     }
     
-    @Override
-    public String toString () {
-        return "News{" + "newsId=" + newsId + ", uid=" + uid + ", info='" + info + '\'' + ", time=" + time + '}';
-    }
-    
 }

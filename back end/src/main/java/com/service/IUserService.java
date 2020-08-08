@@ -1,6 +1,10 @@
 package com.service;
 
 import com.domain.*;
+import com.enums.FollowActionEnum;
+import com.enums.ShowNewsActionEnum;
+import com.enums.SongActionEnum;
+import com.enums.UpdateUserActionEnum;
 import com.exception.*;
 
 import java.util.List;
@@ -337,11 +341,5 @@ public interface IUserService {
      */
     boolean deleteNews (Integer uid, Integer newsId)
             throws UidErrorException, NullUserException, NewsErrorException, SystemErrorException;
-    
-    List<User> findAllUser () throws SystemErrorException;
-    
-    void addAdministrator ();
-    
-    void deleteUser (Integer uid);
     
 }

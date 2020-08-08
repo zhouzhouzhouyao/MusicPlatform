@@ -58,9 +58,4 @@ public class Song implements Serializable {
         this.vip = vip;
     }
     
-    @Override
-    public String toString () {
-        return "Song{" + "songId=" + songId + ", name='" + name + '\'' + ", singer='" + singer + '\'' + ", vip=" + vip + '}';
-    }
-    
 }

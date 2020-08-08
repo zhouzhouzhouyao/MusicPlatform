@@ -129,9 +129,4 @@ public class User implements Serializable {
         this.newsList = newsList;
     }
     
-    @Override
-    public String toString () {
-        return "User{" + "uid=" + uid + ", phone='" + phone + '\'' + ", username='" + username + '\'' + ", vip=" + vip + ", sex='" + sex + '\'' + ", location='" + location + '\'' + ", birthday='" + birthday + '\'' + '}';
-    }
-    
 }
